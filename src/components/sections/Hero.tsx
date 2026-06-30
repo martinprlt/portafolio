@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowDown } from 'lucide-react';
 import { Button } from '../ui/Button';
-
-const roles = ['Node.js', 'Express.js', 'Docker', 'PostgreSQL', 'React', 'Next.js'];
 
 export function Hero() {
   return (
@@ -29,46 +27,52 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(3rem,7vw,5.5rem)] font-bold tracking-[-0.04em] text-white leading-[0.95] mb-6"
+              className="text-[clamp(3rem,7vw,5.5rem)] font-bold tracking-[-0.04em] text-white leading-[0.95] mb-4"
             >
               Emiliano
               <br />
               <span className="text-[#71717A]">Peralta</span>
             </motion.h1>
 
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex items-center justify-center lg:justify-start gap-3 mb-6"
+              className="text-lg md:text-xl text-[#A1A1AA] font-medium mb-3"
             >
-              <span className="text-lg text-white font-medium">Backend Developer</span>
-              <span className="text-[#27272A]">//</span>
-              <span className="inline-block overflow-hidden align-bottom h-[1.2em]">
-                <span className="block animate-[cycle_14s_ease-in-out_infinite]">
-                  {roles.map((r, i) => (
-                    <span key={i} className="block h-[1.2em] leading-[1.2em] text-gradient font-medium">{r}</span>
-                  ))}
-                  <span className="block h-[1.2em] leading-[1.2em] text-gradient font-medium">{roles[0]}</span>
-                </span>
-              </span>
-            </motion.div>
+              Software Engineer
+            </motion.p>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-base text-[#71717A] max-w-[500px] mb-10 leading-relaxed mx-auto lg:mx-0"
+              className="text-base text-[#71717A] max-w-[420px] mb-6 leading-relaxed mx-auto lg:mx-0"
             >
-              Diseño y desarrollo software que resuelve problemas reales.
-              <br />
-              <span className="text-[#A1A1AA]">Co-fundador de BystroLabs.</span>
+              Construyo software que resuelve problemas reales.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-10"
+            >
+              {['Full Stack', 'Backend', 'Inteligencia Artificial'].map((tag) => (
+                <span key={tag} className="text-xs text-[#71717A] font-mono">
+                  {tag}
+                </span>
+              )).reduce((acc, el, i) => {
+                if (i > 0) acc.push(<span key={`sep-${i}`} className="text-[#3F3F46]">·</span>);
+                acc.push(el);
+                return acc;
+              }, [] as React.ReactNode[])}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
               className="flex flex-wrap gap-3 justify-center lg:justify-start"
             >
               <Button variant="primary" size="md" href="#proyectos" icon={<ArrowRight size={16} />}>
@@ -127,6 +131,18 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2"
+        >
+          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+            <ArrowDown size={16} className="text-[#3F3F46]" />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
