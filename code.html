@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emiliano | Full Stack Developer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ffb595",
+                      "on-error-container": "#ffdad6",
+                      "primary-container": "#4b8eff",
+                      "surface": "#131313",
+                      "on-tertiary-fixed": "#351000",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-secondary": "#1c0b9f",
+                      "on-surface-variant": "#c1c6d7",
+                      "secondary-fixed-dim": "#c2c1ff",
+                      "on-primary-container": "#00285c",
+                      "tertiary-container": "#ef6719",
+                      "background": "#131313",
+                      "secondary-fixed": "#e2dfff",
+                      "on-primary-fixed": "#001a41",
+                      "inverse-primary": "#005bc1",
+                      "on-background": "#e5e2e1",
+                      "surface-tint": "#adc6ff",
+                      "on-surface": "#e5e2e1",
+                      "on-primary": "#002e69",
+                      "surface-variant": "#353534",
+                      "primary-fixed-dim": "#adc6ff",
+                      "error-container": "#93000a",
+                      "outline-variant": "#414755",
+                      "on-primary-fixed-variant": "#004493",
+                      "primary": "#adc6ff",
+                      "on-secondary-fixed": "#0c006a",
+                      "surface-container-low": "#1c1b1b",
+                      "surface-container-high": "#2a2a2a",
+                      "tertiary-fixed": "#ffdbcc",
+                      "inverse-on-surface": "#313030",
+                      "surface-dim": "#131313",
+                      "secondary": "#c2c1ff",
+                      "surface-bright": "#3a3939",
+                      "on-error": "#690005",
+                      "on-secondary-container": "#b2b1ff",
+                      "primary-fixed": "#d8e2ff",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-tertiary-container": "#4c1a00",
+                      "surface-container-highest": "#353534",
+                      "on-tertiary": "#571e00",
+                      "on-secondary-fixed-variant": "#3631b4",
+                      "on-tertiary-fixed-variant": "#7c2e00",
+                      "secondary-container": "#3834b6",
+                      "error": "#ffb4ab",
+                      "tertiary": "#ffb595",
+                      "outline": "#8b90a0"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "stack-md": "48px",
+                      "stack-sm": "24px",
+                      "stack-lg": "80px",
+                      "margin-mobile": "20px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "display-lg-mobile": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: theme('colors.primary');
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid theme('colors.primary');
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        a:hover ~ .cursor-outline, button:hover ~ .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(173, 198, 255, 0.1); /* primary with opacity */
+        }
+
+        /* Micro-borders and Glassmorphism */
+        .micro-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-panel {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel-heavy {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ambient Glows */
+        .ambient-glow {
+            position: relative;
+        }
+        .ambient-glow::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle at center, rgba(173, 198, 255, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Hover Tilts */
+        .tilt-card {
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform-style: preserve-3d;
+        }
+        .tilt-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: theme('colors.primary');
+        }
+
+        /* Text Cycling */
+        .cycle-text-container {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+            height: 1.2em;
+        }
+        .cycle-text {
+            display: flex;
+            flex-direction: column;
+            animation: cycle 10s infinite cubic-bezier(0.87, 0, 0.13, 1);
+        }
+        .cycle-item {
+            height: 1.2em;
+            line-height: 1.2em;
+        }
+
+        @keyframes cycle {
+            0%, 15% { transform: translateY(0); }
+            20%, 35% { transform: translateY(-1.2em); }
+            40%, 55% { transform: translateY(-2.4em); }
+            60%, 75% { transform: translateY(-3.6em); }
+            80%, 95% { transform: translateY(-4.8em); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, theme('colors.on-surface') 0%, theme('colors.outline') 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-primary {
+            background: linear-gradient(135deg, theme('colors.primary') 0%, theme('colors.tertiary') 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Timeline */
+        .timeline-track {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: theme('colors.surface-container-high');
+            transform: translateX(-50%);
+        }
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: theme('colors.primary');
+            box-shadow: 0 0 10px theme('colors.primary');
+            transition: height 0.1s;
+        }
+        .timeline-node {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: theme('colors.surface');
+            border: 2px solid theme('colors.primary');
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            transition: transform 0.3s;
+        }
+        .timeline-item:hover .timeline-node {
+            transform: translateX(-50%) scale(1.5);
+            background: theme('colors.primary');
+            box-shadow: 0 0 15px rgba(173, 198, 255, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.background');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.surface-variant');
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.outline');
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Custom Cursor Elements -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+<!-- Background Shader -->
+<div class="fixed inset-0 z-[-1] pointer-events-none opacity-40 mix-blend-screen">
+<!-- STITCH_SHADER_START:ANIMATION_1 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_1" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_1');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+
+float hash(vec2 p) {
+    p = fract(p * vec2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return fract(p.x * p.y);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
+    
+    // Ambient dark background
+    vec3 color = vec3(0.02, 0.02, 0.03);
+    
+    // Subtle flowing glow
+    float glow = sin(uv.x * 2.0 + u_time * 0.5) * cos(uv.y * 2.0 - u_time * 0.3);
+    color += vec3(0.05, 0.08, 0.15) * glow;
+    
+    // Mouse following subtle glow
+    float dist = distance(uv, mouse);
+    color += vec3(0.08, 0.12, 0.2) * (1.0 - smoothstep(0.0, 0.5, dist));
+    
+    // Floating particles (procedural)
+    for(float i=0.0; i<15.0; i++) {
+        vec2 p = vec2(hash(vec2(i, 1.0)), hash(vec2(i, 2.0)));
+        p.y = fract(p.y + u_time * 0.05);
+        float size = 0.001 + 0.002 * hash(vec2(i, 3.0));
+        float p_dist = distance(uv, p);
+        color += vec3(0.4, 0.6, 1.0) * (size / (p_dist + 0.001)) * (0.5 + 0.5 * sin(u_time + i));
+    }
+
+    // Faint glowing lines
+    float line = abs(sin(uv.y * 50.0 + u_time * 0.2)) * 0.02;
+    color += vec3(0.1, 0.2, 0.4) * line * smoothstep(0.4, 0.6, uv.x);
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_1 -->
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/10 shadow-none transition-all duration-300">
+<div class="flex justify-between items-center max-w-[1200px] mx-auto px-gutter h-16">
+<a class="font-headline-md text-headline-md font-bold text-on-surface tracking-tighter" href="#">Emiliano</a>
+<div class="hidden md:flex space-x-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#projects">Projects</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#about">About</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#experience">Experience</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#stack">Stack</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="#contact">Contact</a>
+</div>
+<a class="hidden md:inline-flex items-center justify-center px-4 py-2 font-label-sm text-label-sm font-medium bg-primary text-on-primary rounded border-t border-white/20 hover:brightness-110 transition-all" href="#contact">
+                Hire Me
+            </a>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="max-w-[1200px] mx-auto px-gutter pt-32 pb-stack-lg">
+<!-- Hero Section -->
+<section class="min-h-[819px] flex flex-col justify-center items-start mb-stack-lg relative z-10" id="hero">
+<div class="fade-in-up">
+<h2 class="font-label-sm text-label-sm text-primary mb-4 tracking-widest uppercase">Portfolio 2024</h2>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">
+                    Emiliano <br/>
+<span class="text-gradient">Full Stack Developer</span>
+</h1>
+<div class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-2xl">
+                    Crafting digital experiences with precision. Specializing in 
+                    <span class="cycle-text-container text-primary font-medium">
+<span class="cycle-text">
+<span class="cycle-item">React</span>
+<span class="cycle-item">Node.js</span>
+<span class="cycle-item">AI Integration</span>
+<span class="cycle-item">TypeScript</span>
+<span class="cycle-item">Next.js</span>
+<span class="cycle-item">React</span>
+</span>
+</span>
+</div>
+<div class="flex flex-wrap gap-4">
+<a class="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded font-label-sm text-label-sm border-t border-white/20 hover:brightness-110 transition-all" href="#projects">
+                        View Projects
+                    </a>
+<a class="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/10 text-on-surface rounded font-label-sm text-label-sm hover:border-white/30 transition-all" href="#">
+                        Download CV
+                        <span class="material-symbols-outlined ml-2 text-[16px]">download</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Featured Projects -->
+<section class="mb-stack-lg pt-stack-md" id="projects">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-sm fade-in-up">Featured Work</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Project 1 -->
+<article class="glass-panel rounded-xl overflow-hidden tilt-card ambient-glow flex flex-col fade-in-up stagger-1 group cursor-pointer">
+<div class="h-64 overflow-hidden relative">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="A sleek, dark-themed dashboard interface for a premium tech product. The UI features minimalist charts, a modern sidebar navigation, and subtle neon blue accents against a deep obsidian background. The layout is clean and professional, representing a high-end enterprise software application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0tDztRLulVBX60cnnq9GnrAYvx5SirVufPjuxQCeXyWnQz5f1sThi_S95vYLDRAaPQET-Zc1K0gDggocsrN2bK40i01YomQDgQ-Sr5e3XMSK_hF07ul0BHzXBPKxkDTMPs2SAT9nFhciqObUvvtll4WivTcw1JL0xXUadO9czjbATS1FavHooMi_H66beUk5ny2_0fAbOM2inbKgnPE8Yin_39__rauseo5XBZqtciPkiIn667j6p0jjverni_DYoCKPhyJKY25hz')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-lowest to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="px-2 py-1 bg-surface/80 backdrop-blur-sm rounded text-[10px] font-label-sm text-primary uppercase border border-white/10">Next.js</span>
+<span class="px-2 py-1 bg-surface/80 backdrop-blur-sm rounded text-[10px] font-label-sm text-primary uppercase border border-white/10">Tailwind</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-[24px] font-semibold text-on-surface mb-2 group-hover:text-primary transition-colors">Tecno H Plus</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">A high-performance e-commerce platform built for scale, featuring real-time inventory and seamless checkout.</p>
+<div class="flex items-center text-primary font-label-sm text-label-sm mt-auto">
+                            View Case Study <span class="material-symbols-outlined ml-1 text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Project 2 -->
+<article class="glass-panel rounded-xl overflow-hidden tilt-card ambient-glow flex flex-col fade-in-up stagger-2 group cursor-pointer">
+<div class="h-64 overflow-hidden relative">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="An abstract, modern digital representation of artificial intelligence processing legal documents. Glowing lines of code and data nodes float over a minimalist dark background, evoking a sense of advanced technology, security, and precision in the legal tech domain." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCrV1BR4uObUdRUwTBxboOgD6F2iC0DPkjLhuKEKLOjxL4uMCI4XEicG3trXOO8A4X-gWugZopNFTPgZqLcnwi6EvunahiaAFEXuYKqFGrLlhKNmcFnZFwd83vN8yamHkl-eRjJfoWK2n5s5wUaoXmZcxL_w074XsXzjdaNX3cb1hChecsrqSihCJhDG5s8z5bzTeHyeWoshADQAGcvBz9wsubTyq2ZlZlGcNUEYZ_m3UHkzFXpHIjA7-6rTdB3Ym5b99FLrDqiCTU8')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-lowest to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<span class="px-2 py-1 bg-surface/80 backdrop-blur-sm rounded text-[10px] font-label-sm text-tertiary uppercase border border-white/10">OpenAI</span>
+<span class="px-2 py-1 bg-surface/80 backdrop-blur-sm rounded text-[10px] font-label-sm text-tertiary uppercase border border-white/10">Node.js</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-md text-[24px] font-semibold text-on-surface mb-2 group-hover:text-primary transition-colors">AI Legal Advisor</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow">An intelligent assistant that analyzes contracts and highlights potential risks using custom trained LLMs.</p>
+<div class="flex items-center text-primary font-label-sm text-label-sm mt-auto">
+                            View Case Study <span class="material-symbols-outlined ml-1 text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-stack-md bg-surface border-t border-white/5 transition-all duration-200">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-[1200px] mx-auto px-gutter">
+<div class="font-headline-md text-headline-md font-bold text-on-surface mb-4 md:mb-0">Emiliano</div>
+<div class="font-body-md text-body-md text-on-surface-variant mb-4 md:mb-0">
+                © 2024 Emiliano. Built with precision.
+            </div>
+<div class="flex space-x-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">GitHub</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">LinkedIn</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">Twitter</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-opacity" href="#">Email</a>
+</div>
+</div>
+</footer>
+<script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Slight delay for outline for a smooth trailing effect
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top</script></body></html>

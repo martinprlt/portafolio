@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portfolio>
+  <meta>
+    <nombre>Emiliano Peralta — Portfolio</nombre>
+    <tipo>Portfolio profesional de desarrollador</tipo>
+    <stack>TailwindCSS v4</stack>
+    <fecha>2026-06-29</fecha>
+    <autor>Emiliano Peralta</autor>
+  </meta>
+
+  <estructura>
+    <directorio raiz="src/">
+      <archivo>App.tsx</archivo>
+      <archivo>main.tsx</archivo>
+      <archivo>index.css</archivo>
+      <directorio nombre="components/">
+        <archivo>AnimatedBackground.tsx</archivo>
+        <archivo>AIAssistant.tsx</archivo>
+        <directorio nombre="ui/">
+          <archivo>Button.tsx</archivo>
+          <archivo>Badge.tsx</archivo>
+          <archivo>SkillIcons.tsx</archivo>
+        </directorio>
+        <directorio nombre="layout/">
+          <archivo>Navbar.tsx</archivo>
+          <archivo>Footer.tsx</archivo>
+        </directorio>
+        <directorio nombre="sections/">
+          <archivo>Hero.tsx</archivo>
+          <archivo>About.tsx</archivo>
+          <archivo>Projects.tsx</archivo>
+          <archivo>Skills.tsx</archivo>
+          <archivo>Experience.tsx</archivo>
+          <archivo>Contact.tsx</archivo>
+        </directorio>
+      </directorio>
+      <directorio nombre="data/">
+        <archivo>projects.ts</archivo>
+        <archivo>skills.ts</archivo>
+        <archivo>experience.ts</archivo>
+      </directorio>
+    </directorio>
+    <directorio raiz="public/">
+      <archivo>yo.jpeg (foto de perfil)</archivo>
+      <archivo>TecnoH ERP.jpeg</archivo>
+      <archivo>Unlar Connect.jpeg</archivo>
+      <archivo>sistema de gestion de archivos - el independiente.jpeg</archivo>
+      <archivo>Slotify.jpeg</archivo>
+    </directorio>
+  </estructura>
+
+  <colores>
+    <color nombre="bg" hex="#0A0C10" uso="fondo principal" />
+    <color nombre="surface" hex="#111318" uso="cards, navbars, secciones elevadas" />
+    <color nombre="border" hex="rgba(255,255,255,0.06)" uso="borders sutiles en cards" />
+    <color nombre="text" hex="#E8E9ED" uso="texto principal" />
+    <color nombre="text-secondary" hex="#8B8F9A" uso="texto secundario, descripciones" />
+    <color nombre="primary" hex="#4F8CFF" uso="acentos, links, labels de sección" />
+    <color nombre="success" hex="#22C55E" uso="indicador de disponibilidad" />
+    <color nombre="surface-raised" hex="#181B22" uso="alternativo para superficies" />
+  </colores>
+
+  <tipografia>
+    <fuente nombre="Inter" uso="cuerpo" pesos="300-900" />
+    <fuente nombre="JetBrains Mono" uso="labels de sección, monospace" pesos="400-600" />
+  </tipografia>
+
+  <secciones>
+    <seccion id="inicio" nombre="Hero">
+      <contenido>
+        <nombre>Emiliano Peralta</nombre>
+        <titulo>Backend Developer</titulo>
+        <cycling>Node.js · Express.js · Docker · PostgreSQL · React · Next.js</cycling>
+        <subtitulo>APIs REST, arquitectura de datos y software desplegado en producción. Cofundador de BystroLabs.</subtitulo>
+        <botones>
+          <boton variante="primary">Ver Proyectos →</boton>
+          <boton variante="secondary">GitHub</boton>
+        </botones>
+        <foto>yo.jpeg</foto>
+      </contenido>
+    </seccion>
+
+    <seccion id="sobre-mi" nombre="About">
+      <tipo>Grid de datos concretos (5 items, grid 1-5 columnas responsive)</tipo>
+      <items>
+        <item label="4+ años">Experiencia en soporte IT y desarrollo de software</item>
+        <item label="BystroLabs">Cofundador de startup SaaS (2026)</item>
+        <item label="UNLaR">Ing. en Sistemas de la Información — último año</item>
+        <item label="Producción">Software desplegado y usado por clientes reales</item>
+        <item label="Stack">Node.js · PostgreSQL · Docker · Express</item>
+      </items>
+    </seccion>
+
+    <seccion id="proyectos" nombre="Projects">
+      <tipo>Grid 2 columnas con cards</tipo>
+      <proyectos>
+        <proyecto id="erp">
+          <titulo>Tecno H Plus — ERP</titulo>
+          <imagen>TecnoH ERP.jpeg</imagen>
+          <techStack>Next.js, React, Supabase, PostgreSQL</techStack>
+          <url>https://tecnohplus.com</url>
+          <colorAcento>#4F8CFF</colorAcento>
+        </proyecto>
+        <proyecto id="unlar">
+          <titulo>UNLaR Connect</titulo>
+          <imagen>Unlar Connect.jpeg</imagen>
+          <techStack>React, TypeScript</techStack>
+          <url>https://unlar-connect.vercel.app/</url>
+          <colorAcento>#8B5CF6</colorAcento>
+        </proyecto>
+        <proyecto id="files">
+          <titulo>Gestión Documental — Diario El Independiente</titulo>
+          <imagen>sistema de gestion de archivos - el independiente.jpeg</imagen>
+          <techStack>Node.js, Express.js, PostgreSQL, Cloudinary, Railway, JWT</techStack>
+          <url null="true">Proyecto interno — sin URL pública</url>
+          <colorAcento>#22C55E</colorAcento>
+        </proyecto>
+        <proyecto id="slotify">
+          <titulo>Slotify</titulo>
+          <imagen>Slotify.jpeg</imagen>
+          <techStack>Node.js, Express.js, React, Vite, Prisma, PostgreSQL, Docker, JWT</techStack>
+          <url>https://slotify.app</url>
+          <colorAcento>#F59E0B</colorAcento>
+        </proyecto>
+      </proyectos>
+    </seccion>
+
+    <seccion id="habilidades" nombre="Skills">
+      <tipo>Grid 2-5 columnas con dots de color</tipo>
+      <categorias>
+        <categoria nombre="Frontend" skills="React, Next.js, HTML, CSS, Tailwind CSS" />
+        <categoria nombre="Backend" skills="Node.js, Express.js, JavaScript, JWT, REST APIs" />
+        <categoria nombre="Bases de Datos" skills="PostgreSQL, MySQL, Supabase, Prisma ORM" />
+        <categoria nombre="Infraestructura" skills="Linux, Docker, Railway, Cloudinary" />
+        <categoria nombre="Herramientas" skills="Git, Scrum, UML, Vercel" />
+      </categorias>
+    </seccion>
+
+    <seccion id="experiencia" nombre="Experience">
+      <tipo>Cards apiladas</tipo>
+      <items>
+        <item tipo="work">
+          <titulo>Co-founder &amp; Software Developer</titulo>
+          <empresa>BystroLabs</empresa>
+          <periodo>2026 — Presente</periodo>
+          <bullets>
+            Diseño de APIs REST y arquitectura de base de datos
+            Gestión de sprint y backlog con metodología Scrum
+            Desarrollo de producto SaaS desde cero
+          </bullets>
+        </item>
+        <item tipo="work">
+          <titulo>Jr. Systems Administrator</titulo>
+          <empresa>ECORP</empresa>
+          <periodo>2025 — Presente</periodo>
+          <bullets>
+            Administración de servidores y usuarios
+            Resolución de incidentes de hardware y software
+            Soporte técnico y mantenimiento de infraestructura
+          </bullets>
+        </item>
+        <item tipo="work">
+          <titulo>IT Support &amp; Infrastructure Technician</titulo>
+          <empresa>Tecno-H</empresa>
+          <periodo>2021 — 2024</periodo>
+          <bullets>
+            Soporte técnico a clientes y resolución de problemas
+            Instalación de sistemas operativos y redes Ethernet
+            Despliegue de plataforma e-commerce para el negocio
+          </bullets>
+        </item>
+        <item tipo="education">
+          <titulo>Ingeniería en Sistemas de la Información</titulo>
+          <empresa>Universidad Nacional de La Rioja (UNLaR)</empresa>
+          <periodo>2022 — Presente</periodo>
+          <bullets>
+            Cursando el último año de la carrera
+            Enfoque en desarrollo de software y arquitectura de sistemas
+            Participación en hackathons y proyectos universitarios
+          </bullets>
+        </item>
+        <item tipo="education">
+          <titulo>Técnico en Informática</titulo>
+          <empresa>E.P.E.T. N°1</empresa>
+          <periodo>2016 — 2021</periodo>
+          <bullets>
+            Formación técnica en informática y sistemas
+            Bases en programación, redes y hardware
+          </bullets>
+        </item>
+      </items>
+    </seccion>
+
+    <seccion id="contacto" nombre="Contact">
+      <tipo>Formulario + links</tipo>
+      <campos>Nombre, Email, Mensaje</campos>
+      <links>
+        <link tipo="github">github.com/martinprlt</link>
+        <link tipo="email">martinprlt02@gmail.com</link>
+      </links>
+    </seccion>
+  </secciones>
+
+  <componentes>
+    <componente nombre="Navbar">
+      <tipo>Barra fija con IntersectionObserver para sección activa</tipo>
+      <links>Inicio, Proyectos, Stack, Experiencia, Contacto</links>
+      <comportamiento mobile>Menu hamburguesa</comportamiento>
+    </componente>
+    <componente nombre="Footer">
+      <tipo>Minimal — nombre + copyright + GitHub + Email</tipo>
+    </componente>
+    <componente nombre="Button">
+      <variantes>primary (bg #4F8CFF), secondary (border white/10)</variantes>
+      <tamaños>sm, md</tamaños>
+    </componente>
+    <componente nombre="Badge">
+      <uso>Tech stack pills con color por proyecto</uso>
+    </componente>
+    <componente nombre="AnimatedBackground">
+      <tipo>Canvas2D — partículas sutiles + glow que sigue al mouse</tipo>
+    </componente>
+    <componente nombre="AIAssistant">
+      <tipo>FAB flotante → panel de chat</tipo>
+      <api>Anthropic Claude API (claude-sonnet-4-6)</api>
+      <auth>API key en sessionStorage del navegador</auth>
+      <header>anthropic-dangerous-direct-browser-access: true</header>
+      <systemPrompt>Perfil completo de Emiliano con experiencia, proyectos, stack y educación</systemPrompt>
+    </componente>
+  </componentes>
+
+  <animaciones>
+    <libreria>Framer Motion</libreria>
+    <tipos>Scroll reveal, fade, slide, scale, spring, text cycling (CSS keyframes)</tipos>
+    <fondo>Canvas2D particles + mouse glow (muy sutil)</fondo>
+  </animaciones>
+
+  <comandos>
+    <comando accion="desarrollo">npm run dev</comando>
+    <comando accion="build">npm run build</comando>
+    <comando accion="typecheck">npx tsc --noEmit</comando>
+  </comandos>
+
+  <notas>
+    <nota>Los archivos en /public tienen espacios y guiones en los nombres — verificar siempre contra el filesystem real.</nota>
+    <nota>El AI Assistant requiere una API key de Anthropic del usuario — no hardcodea keys.</nota>
+    <nota>Todos los links apuntan a URLs reales: github.com/martinprlt, martinprlt02@gmail.com</nota>
+  </notas>
+</portfolio>
