@@ -59,7 +59,7 @@ export const projects: Project[] = [
     techStack: ['Node.js', 'Express.js', 'React', 'Vite', 'Prisma', 'PostgreSQL', 'Docker', 'JWT'],
     accentColor: '#F59E0B',
     status: 'production',
-    liveUrl: 'https://slotify.app',
+    liveUrl: 'https://slotifyapp.site/',
   },
   {
     id: 'files',

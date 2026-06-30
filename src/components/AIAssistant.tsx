@@ -18,7 +18,7 @@ Experience:
 
 Projects:
 - Tecno H Plus ERP: Modular ERP. Next.js, React, Supabase, PostgreSQL. URL: tecnohplus.com
-- Slotify: SaaS PWA for appointments. Node.js, Express, React, Prisma, PostgreSQL, Docker, JWT. URL: slotify.app
+- Slotify: SaaS PWA for appointments. Node.js, Express, React, Prisma, PostgreSQL, Docker, JWT. URL: slotifyapp.site
 - Diario El Independiente: Document management for a real newspaper. Node.js, Express, PostgreSQL, Cloudinary, Railway. Production deployed.
 - UNLaR Connect: Hackathon platform (2nd place, May 2026). URL: unlar-connect.vercel.app
 - T.E. Worship: PWA for church worship team hymnal. React, Node.js, Firebase. URL: martinprlt.github.io/Alabanza-T.E./
