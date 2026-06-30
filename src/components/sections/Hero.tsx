@@ -93,7 +93,7 @@ export function Hero() {
               <div className="absolute -inset-8 bg-gradient-to-br from-[#4F8CFF]/8 via-[#8B5CF6]/4 to-transparent rounded-full blur-3xl" />
               <div className="relative w-[280px] h-[340px] lg:w-[320px] lg:h-[400px] rounded-2xl overflow-hidden border border-white/[0.04]">
                 <img
-                  src="/yo.jpeg"
+                  src="/portafolio/yo.jpeg"
                   alt="Emiliano Peralta"
                   className="w-full h-full object-cover"
                   loading="eager"
