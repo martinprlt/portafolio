@@ -35,7 +35,7 @@ export function Skills() {
                     className="w-8 h-8 rounded-lg flex items-center justify-center"
                     style={{ backgroundColor: `${skill.brandColor}10` }}
                   >
-                    <Icon size={16} style={{ color: skill.brandColor }} />
+                    <span style={{ color: skill.brandColor }}><Icon size={16} /></span>
                   </div>
                   <span className="text-sm text-[#A1A1AA] group-hover:text-white transition-colors">{skill.name}</span>
                 </motion.div>

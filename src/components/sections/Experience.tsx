@@ -7,7 +7,7 @@ const typeColors: Record<string, string> = {
   work: '#22C55E',
 };
 
-const typeIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const typeIcons: Record<string, React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>> = {
   education: GraduationCap,
   work: Briefcase,
 };
