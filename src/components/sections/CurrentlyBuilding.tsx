@@ -1,28 +1,16 @@
 import { motion } from 'framer-motion';
 import { Rocket, Bot, Briefcase } from 'lucide-react';
+import { useLanguage } from '../../i18n/LanguageContext';
 
-const items = [
-  {
-    icon: Rocket,
-    title: 'BystroLabs',
-    description: 'Startup SaaS — diseño de producto, APIs y arquitectura desde cero.',
-    color: '#4F8CFF',
-  },
-  {
-    icon: Bot,
-    title: 'AI Solutions',
-    description: 'Integración de modelos de lenguaje en aplicaciones reales.',
-    color: '#8B5CF6',
-  },
-  {
-    icon: Briefcase,
-    title: 'SaaS Products',
-    description: 'Productos escalables con autenticación, pagos y despliegue continuo.',
-    color: '#22C55E',
-  },
+const cards = [
+  { icon: Rocket, title: 'BystroLabs', color: '#4F8CFF' },
+  { icon: Bot, title: 'AI Solutions', color: '#8B5CF6' },
+  { icon: Briefcase, title: 'SaaS Products', color: '#22C55E' },
 ];
 
 export function CurrentlyBuilding() {
+  const { t, translations } = useLanguage();
+
   return (
     <section className="py-40">
       <div className="mx-container">
@@ -33,11 +21,11 @@ export function CurrentlyBuilding() {
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono">Actualmente construyendo</span>
+          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono">{t('building.eyebrow')}</span>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {items.map((item, i) => {
+          {cards.map((item, i) => {
             const Icon = item.icon;
             return (
               <motion.div
@@ -55,7 +43,7 @@ export function CurrentlyBuilding() {
                   <Icon size={20} style={{ color: item.color }} />
                 </div>
                 <h3 className="text-white font-semibold text-sm mb-1.5">{item.title}</h3>
-                <p className="text-[#71717A] text-sm leading-relaxed">{item.description}</p>
+                <p className="text-[#71717A] text-sm leading-relaxed">{translations.building.items[i].description}</p>
               </motion.div>
             );
           })}

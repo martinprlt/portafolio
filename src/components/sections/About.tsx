@@ -1,6 +1,24 @@
+import { Fragment } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../i18n/LanguageContext';
+
+const HIGHLIGHT_WORDS = ['BystroLabs', 'ECORP'];
+
+function highlight(text: string) {
+  const parts = text.split(new RegExp(`(${HIGHLIGHT_WORDS.join('|')})`));
+  return parts.map((part, i) =>
+    HIGHLIGHT_WORDS.includes(part) ? (
+      <span key={i} className="text-[#A1A1AA]">{part}</span>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  );
+}
 
 export function About() {
+  const { t, translations } = useLanguage();
+  const paragraphs = translations.about.paragraphs;
+
   return (
     <section id="sobre-mi" className="py-40">
       <div className="mx-container">
@@ -11,31 +29,18 @@ export function About() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">Sobre Mí</span>
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight mb-6">Quién soy</h2>
+          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">{t('about.eyebrow')}</span>
+          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight mb-6">{t('about.title')}</h2>
           <div className="max-w-[700px] space-y-4">
-            <p className="text-[#A1A1AA] text-base leading-relaxed">
-              Tengo 23 años y soy Técnico en Informática y estudiante del último año de Ingeniería en Sistemas de la Información en la UNLaR.
-            </p>
-            <p className="text-[#71717A] text-sm leading-relaxed">
-              Actualmente estoy llevando a cabo trabajos freelance con compañeros a través de nuestra startup <span className="text-[#A1A1AA]">BystroLabs</span>, donde participamos en el hackathon de la universidad y obtuvimos el 2do lugar (Mayo 2026).
-            </p>
-            <p className="text-[#71717A] text-sm leading-relaxed">
-              Paralelamente trabajo como técnico en informática en <span className="text-[#A1A1AA]">ECORP</span>, donde trabajo colaborativamente con distintos profesionales para solucionar problemas de microinformática, redes, incidentes y más.
-            </p>
-            <p className="text-[#71717A] text-sm leading-relaxed">
-              Fuera del área de TI, soy miembro líder de un grupo de alabanza en una iglesia, lo cual me enseñó liderazgo, trabajo en equipo y gestión de proyectos.
-            </p>
+            <p className="text-[#A1A1AA] text-base leading-relaxed">{highlight(paragraphs[0])}</p>
+            {paragraphs.slice(1).map((p, i) => (
+              <p key={i} className="text-[#71717A] text-sm leading-relaxed">{highlight(p)}</p>
+            ))}
           </div>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { value: '4+', label: 'Años en IT', color: '#4F8CFF' },
-            { value: '5', label: 'Proyectos en producción', color: '#22C55E' },
-            { value: '2do', label: 'Lugar en hackathon UNLaR', color: '#8B5CF6' },
-            { value: '∞', label: 'Café consumido', color: '#F59E0B' },
-          ].map((stat, i) => (
+          {translations.about.stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}

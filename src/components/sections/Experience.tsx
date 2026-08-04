@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { experiences } from '../../data/experience';
 import { Briefcase, GraduationCap } from 'lucide-react';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 const typeColors: Record<string, string> = {
   education: '#4F8CFF',
@@ -13,6 +14,7 @@ const typeIcons: Record<string, React.ComponentType<{ size?: number; className?:
 };
 
 export function Experience() {
+  const { t, language } = useLanguage();
   return (
     <section id="experiencia" className="py-40">
       <div className="mx-container">
@@ -23,8 +25,8 @@ export function Experience() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">Experiencia</span>
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight">Mi recorrido</h2>
+          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">{t('experience.eyebrow')}</span>
+          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight">{t('experience.heading')}</h2>
         </motion.div>
 
         <div className="space-y-0">
@@ -56,14 +58,14 @@ export function Experience() {
 
                 {/* Content */}
                 <div className={`pb-12 ${isLast ? 'pb-0' : ''}`}>
-                  <h3 className="text-white font-semibold text-base mb-1">{exp.title}</h3>
+                  <h3 className="text-white font-semibold text-base mb-1">{exp.title[language]}</h3>
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     <span className="text-[#A1A1AA] text-sm">{exp.organization}</span>
                     <span className="text-[#3F3F46] text-xs">·</span>
-                    <span className="text-[11px] font-mono text-[#3F3F46]">{exp.period}</span>
+                    <span className="text-[11px] font-mono text-[#3F3F46]">{exp.period[language]}</span>
                   </div>
                   <ul className="space-y-2">
-                    {exp.bullets.map((b, j) => (
+                    {exp.bullets[language].map((b, j) => (
                       <li key={j} className="text-sm text-[#71717A] leading-relaxed flex items-start gap-2.5">
                         <span className="w-1 h-1 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: `${color}50` }} />
                         {b}

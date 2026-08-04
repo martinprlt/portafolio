@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { skillCategories } from '../../data/skills';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 export function Skills() {
+  const { t } = useLanguage();
   return (
     <section id="stack" className="py-40">
       <div className="mx-container">
@@ -12,8 +14,8 @@ export function Skills() {
           transition={{ duration: 0.5 }}
           className="mb-14"
         >
-          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">Stack</span>
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight">Tecnologías</h2>
+          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">{t('skills.eyebrow')}</span>
+          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight">{t('skills.heading')}</h2>
         </motion.div>
 
         <div className="flex flex-wrap gap-3 justify-center">

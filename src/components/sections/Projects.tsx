@@ -3,6 +3,7 @@ import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { ExternalLink } from 'lucide-react';
 import { projects } from '../../data/projects';
+import { useLanguage } from '../../i18n/LanguageContext';
 import { useState } from 'react';
 
 function ProjectImage({ src, alt, initials, accentColor }: { src: string; alt: string; initials: string; accentColor: string }) {
@@ -18,25 +19,28 @@ function ProjectImage({ src, alt, initials, accentColor }: { src: string; alt: s
 }
 
 function StatusBadge({ status }: { status: string }) {
+  const { translations } = useLanguage();
+  const s = translations.projects.status;
   const map: Record<string, { label: string; color: string }> = {
-    production: { label: 'Producción', color: '#22C55E' },
-    university: { label: 'Universidad', color: '#4F8CFF' },
-    hackathon: { label: 'Hackathon', color: '#8B5CF6' },
-    personal: { label: 'Personal', color: '#EC4899' },
+    production: { label: s.production, color: '#22C55E' },
+    university: { label: s.university, color: '#4F8CFF' },
+    hackathon: { label: s.hackathon, color: '#8B5CF6' },
+    personal: { label: s.personal, color: '#EC4899' },
   };
-  const s = map[status] ?? map.production;
+  const b = map[status] ?? map.production;
   return (
     <span
       className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider rounded-full"
-      style={{ color: s.color, backgroundColor: `${s.color}10`, border: `1px solid ${s.color}20` }}
+      style={{ color: b.color, backgroundColor: `${b.color}10`, border: `1px solid ${b.color}20` }}
     >
-      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: s.color }} />
-      {s.label}
+      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: b.color }} />
+      {b.label}
     </span>
   );
 }
 
 export function Projects() {
+  const { t, language } = useLanguage();
   return (
     <section id="proyectos" className="py-40">
       <div className="mx-container">
@@ -47,8 +51,8 @@ export function Projects() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">Proyectos</span>
-          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight">Software en producción</h2>
+          <span className="text-[11px] text-[#4F8CFF] uppercase tracking-[0.2em] font-mono mb-3 block">{t('projects.eyebrow')}</span>
+          <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold text-white tracking-tight">{t('projects.heading')}</h2>
         </motion.div>
 
         <div className="space-y-40">
@@ -66,7 +70,7 @@ export function Projects() {
                 {/* Image */}
                 <div className={`${isReversed ? 'lg:order-2' : ''}`}>
                   <div className="relative rounded-2xl overflow-hidden border border-white/[0.04] bg-[#0C0D12] aspect-[16/10]">
-                    <ProjectImage src={project.image} alt={project.title} initials={project.initials} accentColor={project.accentColor} />
+                    <ProjectImage src={project.image} alt={project.title[language]} initials={project.initials} accentColor={project.accentColor} />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#050508]/60 via-transparent to-transparent" />
                   </div>
                 </div>
@@ -78,15 +82,15 @@ export function Projects() {
                   </div>
 
                   <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-2">
-                    {project.title}
+                    {project.title[language]}
                   </h3>
-                  <p className="text-sm text-[#A1A1AA] mb-2">{project.tagline}</p>
-                  <p className="text-xs text-[#4F8CFF] font-mono mb-5">Mi rol: {project.role}</p>
+                  <p className="text-sm text-[#A1A1AA] mb-2">{project.tagline[language]}</p>
+                  <p className="text-xs text-[#4F8CFF] font-mono mb-5">{t('projects.roleLabel')} {project.role[language]}</p>
 
                   <div className="mb-6">
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-[#71717A] font-mono mb-3">Responsabilidades</p>
+                    <p className="text-[10px] uppercase tracking-[0.15em] text-[#71717A] font-mono mb-3">{t('projects.responsibilities')}</p>
                     <ul className="space-y-2">
-                      {project.responsibilities.map((r, j) => (
+                      {project.responsibilities[language].map((r, j) => (
                         <li key={j} className="text-sm text-[#A1A1AA] leading-relaxed flex items-start gap-2.5">
                           <span className="w-1 h-1 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: `${project.accentColor}60` }} />
                           {r}
@@ -104,11 +108,11 @@ export function Projects() {
                   <div className="flex gap-3">
                     {project.liveUrl && (
                       <Button variant="secondary" size="sm" href={project.liveUrl} icon={<ExternalLink size={14} />}>
-                        Ver Proyecto
+                        {t('projects.viewProject')}
                       </Button>
                     )}
                     {!project.liveUrl && (
-                      <span className="text-xs text-[#3F3F46] italic py-1.5">Proyecto interno — sin URL pública</span>
+                      <span className="text-xs text-[#3F3F46] italic py-1.5">{t('projects.internalProject')}</span>
                     )}
                   </div>
                 </div>

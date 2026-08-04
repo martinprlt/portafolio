@@ -12,6 +12,7 @@ import {
   GitHubLogo,
   LinuxLogo,
 } from '../components/ui/SkillIcons';
+import type { LocalizedText } from './localized';
 
 export interface Skill {
   name: string;
@@ -20,14 +21,14 @@ export interface Skill {
 }
 
 export interface SkillCategory {
-  title: string;
+  title: LocalizedText;
   icon: string;
   skills: Skill[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: 'Frontend',
+    title: { en: 'Frontend', es: 'Frontend' },
     icon: '🎨',
     skills: [
       { name: 'React', icon: ReactLogo, brandColor: '#61DAFB' },
@@ -38,7 +39,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Backend',
+    title: { en: 'Backend', es: 'Backend' },
     icon: '⚙️',
     skills: [
       { name: 'Node.js', icon: NodeLogo, brandColor: '#339933' },
@@ -49,7 +50,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Bases de Datos',
+    title: { en: 'Databases', es: 'Bases de Datos' },
     icon: '🗄️',
     skills: [
       { name: 'PostgreSQL', icon: PostgresLogo, brandColor: '#336791' },
@@ -59,7 +60,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Infraestructura',
+    title: { en: 'Infrastructure', es: 'Infraestructura' },
     icon: '☁️',
     skills: [
       { name: 'Linux', icon: LinuxLogo, brandColor: '#FCC624' },
@@ -69,7 +70,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Herramientas',
+    title: { en: 'Tools', es: 'Herramientas' },
     icon: '🛠️',
     skills: [
       { name: 'Git', icon: GitLogo, brandColor: '#F05032' },

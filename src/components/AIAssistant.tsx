@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Bot, User, Sparkles, Key } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface Message { id: number; text: string; sender: 'user' | 'bot'; }
 
@@ -29,8 +30,6 @@ Education:
 - Ingeniería en Sistemas de la Información, UNLaR (2022–present, final year)
 - Técnico en Informática, E.P.E.T. N°1 (2016–2021)`;
 
-const suggested = ['¿Quién es Emiliano?', '¿Qué tecnologías usa?', '¿Proyectos más complejos?', '¿Disponible para freelance?'];
-
 async function ask(apiKey: string, msg: string, history: Message[]): Promise<string> {
   const messages = history.filter((m) => m.id !== 0).map((m) => ({ role: m.sender === 'user' ? 'user' as const : 'assistant' as const, content: m.text }));
   messages.push({ role: 'user', content: msg });
@@ -41,15 +40,16 @@ async function ask(apiKey: string, msg: string, history: Message[]): Promise<str
   });
   if (!res.ok) throw new Error(`API ${res.status}`);
   const data = await res.json();
-  return data.content?.[0]?.text ?? 'Sin respuesta.';
+  return data.content?.[0]?.text ?? 'No response.';
 }
 
 export function AIAssistant() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [apiKey, setApiKey] = useState(() => sessionStorage.getItem('anthropic_key') ?? '');
   const [keySaved, setKeySaved] = useState(() => !!sessionStorage.getItem('anthropic_key'));
   const [keyInput, setKeyInput] = useState('');
-  const [msgs, setMsgs] = useState<Message[]>([{ id: 0, text: 'Pregúntame sobre Emiliano — proyectos, stack, experiencia.', sender: 'bot' }]);
+  const [msgs, setMsgs] = useState<Message[]>([{ id: 0, text: t('assistant.welcome'), sender: 'bot' }]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
@@ -68,16 +68,16 @@ export function AIAssistant() {
   };
 
   const send = async (text?: string) => {
-    const t = text || input.trim();
-    if (!t || !keySaved) return;
-    setMsgs((p) => [...p, { id: Date.now(), text: t, sender: 'user' }]);
+    const tmsg = text || input.trim();
+    if (!tmsg || !keySaved) return;
+    setMsgs((p) => [...p, { id: Date.now(), text: tmsg, sender: 'user' }]);
     setInput('');
     setTyping(true);
     try {
-      const r = await ask(apiKey, t, msgs);
+      const r = await ask(apiKey, tmsg, msgs);
       setMsgs((p) => [...p, { id: Date.now() + 1, text: r, sender: 'bot' }]);
     } catch {
-      setMsgs((p) => [...p, { id: Date.now() + 1, text: 'Error de conexión. Verificá tu clave.', sender: 'bot' }]);
+      setMsgs((p) => [...p, { id: Date.now() + 1, text: t('assistant.error'), sender: 'bot' }]);
     } finally { setTyping(false); }
   };
 
@@ -92,7 +92,7 @@ export function AIAssistant() {
         className={`fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all cursor-pointer ${
           open ? 'bg-[#12131A] border border-white/[0.08] rotate-0' : 'bg-white text-[#050508] hover:scale-105'
         }`}
-        aria-label={open ? 'Cerrar' : 'Asistente IA'}
+        aria-label={open ? t('assistant.closeLabel') : t('assistant.openLabel')}
       >
         <AnimatePresence mode="wait">
           {open ? (
@@ -123,7 +123,7 @@ export function AIAssistant() {
                 <Bot size={16} className="text-[#050508]" />
               </div>
               <div>
-                <h3 className="text-[13px] font-semibold text-white">Asistente</h3>
+                <h3 className="text-[13px] font-semibold text-white">{t('assistant.title')}</h3>
                 <p className="text-[10px] text-[#71717A]">Claude API</p>
               </div>
             </div>
@@ -132,7 +132,7 @@ export function AIAssistant() {
               <div className="flex-1 flex flex-col items-center justify-center px-6 gap-4">
                 <Key size={28} className="text-[#71717A]" />
                 <p className="text-[13px] text-[#71717A] text-center leading-relaxed">
-                  Ingresá tu API key de Anthropic. Se guarda solo en esta sesión.
+                  {t('assistant.apiKeyHint')}
                 </p>
                 <input
                   type="password"
@@ -143,7 +143,7 @@ export function AIAssistant() {
                   className="w-full px-4 py-2.5 bg-[#050508] border border-white/[0.06] rounded-lg text-sm text-white placeholder-[#3F3F46] focus:outline-none focus:border-[#4F8CFF]/30 transition-colors"
                 />
                 <button onClick={saveKey} disabled={!keyInput.trim()} className="w-full py-2.5 text-sm font-medium bg-white text-[#050508] rounded-lg disabled:opacity-30 cursor-pointer">
-                  Continuar
+                  {t('assistant.continue')}
                 </button>
               </div>
             ) : (
@@ -178,7 +178,7 @@ export function AIAssistant() {
 
                 {msgs.length <= 2 && (
                   <div className="px-4 pb-2 flex flex-wrap gap-1.5">
-                    {suggested.map((q) => (
+                    {t('assistant.suggested').map((q) => (
                       <button key={q} onClick={() => send(q)} className="px-3 py-1.5 text-[11px] text-[#71717A] bg-[#12131A] rounded-full hover:text-white hover:bg-[#1E1F26] transition-colors cursor-pointer">
                         {q}
                       </button>
@@ -191,7 +191,7 @@ export function AIAssistant() {
                     ref={inputRef}
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Escribí..."
+                    placeholder={t('assistant.placeholder')}
                     className="flex-1 bg-[#050508] border border-white/[0.06] rounded-full px-4 py-2 text-[13px] text-white placeholder-[#3F3F46] focus:outline-none focus:border-[#4F8CFF]/30 transition-colors"
                   />
                   <button type="submit" disabled={!input.trim() || typing} className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-[#050508] disabled:opacity-30 cursor-pointer">

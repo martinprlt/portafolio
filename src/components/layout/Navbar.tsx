@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useLanguage } from '../../i18n/LanguageContext';
+import { LanguageToggle } from '../ui/LanguageToggle';
 
-const links = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Experiencia', href: '#experiencia' },
-  { label: 'Contacto', href: '#contacto' },
-];
+const navLinks = [
+  { key: 'home', href: '#inicio' },
+  { key: 'projects', href: '#proyectos' },
+  { key: 'stack', href: '#stack' },
+  { key: 'experience', href: '#experiencia' },
+  { key: 'contact', href: '#contacto' },
+] as const;
 
 export function Navbar() {
+  const { t } = useLanguage();
+  const links = navLinks.map((l) => ({ label: t(`nav.${l.key}`), href: l.href }));
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState('#inicio');
@@ -69,12 +73,13 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4 flex-shrink-0">
+            <LanguageToggle />
             <a
               href="#contacto"
               onClick={(e) => { e.preventDefault(); go('#contacto'); }}
               className="hidden md:inline-flex items-center text-[13px] font-medium text-[#71717A] hover:text-white transition-colors"
             >
-              Contacto
+              {t('nav.contact')}
             </a>
             <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-white p-2" aria-label="Menu">
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -104,6 +109,9 @@ export function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <div className="mt-3 flex justify-center">
+                <LanguageToggle id="mobile" />
+              </div>
             </div>
           </motion.div>
         )}
