@@ -44,7 +44,7 @@ async function ask(apiKey: string, msg: string, history: Message[]): Promise<str
 }
 
 export function AIAssistant() {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
   const [open, setOpen] = useState(false);
   const [apiKey, setApiKey] = useState(() => sessionStorage.getItem('anthropic_key') ?? '');
   const [keySaved, setKeySaved] = useState(() => !!sessionStorage.getItem('anthropic_key'));
@@ -178,7 +178,7 @@ export function AIAssistant() {
 
                 {msgs.length <= 2 && (
                   <div className="px-4 pb-2 flex flex-wrap gap-1.5">
-                    {t('assistant.suggested').map((q) => (
+                    {translations.assistant.suggested.map((q) => (
                       <button key={q} onClick={() => send(q)} className="px-3 py-1.5 text-[11px] text-[#71717A] bg-[#12131A] rounded-full hover:text-white hover:bg-[#1E1F26] transition-colors cursor-pointer">
                         {q}
                       </button>
